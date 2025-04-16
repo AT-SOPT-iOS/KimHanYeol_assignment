@@ -15,15 +15,24 @@ class ViewController: UIViewController {
     private let backButton = UIButton()
     private let titleLabel = UILabel()
     private let idTextField = UITextField()
+    
     private let pwView = UIView()
     private let pwTextField = UITextField()
-    private let loginButton = UIButton()
-    private let findIDButton = UIButton()
-    private let findPWButton = UIButton()
-    private let validateLabel = UILabel()
     lazy private var visibleToggleButton = UIButton()
     private var visibleImage: Bool = true
     private let clearTextButton = UIButton()
+    
+    private let loginButton = UIButton()
+    
+    private let findView = UIView()
+    private let findIDButton = UIButton()
+    private let findPWButton = UIButton()
+    private let divideIcon = UILabel()
+    
+    private let validateView = UIView()
+    private let validateLabel = UILabel()
+    private let signinButton = UIButton()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +51,12 @@ class ViewController: UIViewController {
                 idTextField,
                 pwView,
                 loginButton,
-                findIDButton,
-                findPWButton,
-                validateLabel
+                findView,
+                validateView
             )
         pwView.addSubviews(pwTextField, clearTextButton, visibleToggleButton)
+        findView.addSubviews(findIDButton, divideIcon, findPWButton)
+        validateView.addSubviews(validateLabel, signinButton)
     }
     
     private func setStyle() {
@@ -88,6 +98,41 @@ class ViewController: UIViewController {
         visibleToggleButton.tintColor = .gray
         visibleToggleButton.addTarget(self, action: #selector(visibleToggle), for: .touchUpInside)
         visibleToggleButton.isHidden = true
+        
+        loginButton.setTitle("로그인하기", for: .normal)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.backgroundColor = .red
+        loginButton.layer.cornerRadius = 5
+        
+        findIDButton.setTitle("아이디 찾기", for: .normal)
+        findIDButton.setTitleColor(.lightGray, for: .normal)
+        findIDButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        
+        findPWButton.setTitle("비밀번호 찾기", for: .normal)
+        findPWButton.setTitleColor(.lightGray, for: .normal)
+        findPWButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        
+        divideIcon.text = "|"
+        divideIcon.textColor = .lightGray
+        divideIcon.font = .systemFont(ofSize: 14)
+        
+        validateLabel.text = "아직 계정이 없으신가요?"
+        validateLabel.textColor = .gray
+        validateLabel.font = .systemFont(ofSize: 12)
+        
+        let underlineAttrString = NSAttributedString(
+            string: "TVING ID 회원가입하기",
+            attributes: [
+                .foregroundColor: UIColor.gray,
+                .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+        )
+        
+        signinButton.setAttributedTitle(underlineAttrString, for: .normal)
+        
+        
+        
     }
     
     private func setLayout() {
@@ -135,6 +180,51 @@ class ViewController: UIViewController {
             $0.centerY.equalToSuperview()
             $0.trailing.equalTo(visibleToggleButton.snp.leading).offset(-8)
             $0.width.height.equalTo(24)
+        }
+        
+        loginButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(pwView.snp.bottom).offset(20)
+            $0.width.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
+        }
+        
+        findView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(loginButton.snp.bottom).offset(20)
+            $0.width.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
+        }
+        
+        findIDButton.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(40)
+            $0.centerY.equalToSuperview()
+        }
+        
+        divideIcon.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        findPWButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(40)
+            $0.centerY.equalToSuperview()
+        }
+        
+        validateView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(findView.snp.bottom).offset(20)
+            $0.width.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
+        }
+        
+        validateLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        signinButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(20)
         }
         
     }
