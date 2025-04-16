@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     private let titleLabel = UILabel()
     private let idTextField = UITextField()
     
+    private let pwStackView = UIStackView()
     private let pwView = UIView()
     private let pwTextField = UITextField()
     lazy private var visibleToggleButton = UIButton()
@@ -32,7 +33,6 @@ class ViewController: UIViewController {
     private let validateView = UIView()
     private let validateLabel = UILabel()
     private let signinButton = UIButton()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,24 +76,28 @@ class ViewController: UIViewController {
         idTextField.addLeftPadding(width: 20)
         idTextField.configureDefaultSettings()
         idTextField.layer.cornerRadius = 5
+        idTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
+        idTextField.delegate = self
         
         pwView.backgroundColor = .darkGray
         pwView.layer.cornerRadius = 5
-
+        
         pwTextField.placeholder = "비밀번호"
+        pwTextField.backgroundColor = .clear
         pwTextField.textColor = .white
         pwTextField.setPlaceholderColor(color: .lightGray)
         pwTextField.addLeftPadding(width: 10)
         pwTextField.isSecureTextEntry = true
         pwTextField.configureDefaultSettings()
-        pwTextField.backgroundColor = .clear
         pwTextField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
-
+        pwTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
+        pwTextField.delegate = self
+        
         clearTextButton.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
         clearTextButton.tintColor = .gray
         clearTextButton.isHidden = true
         clearTextButton.addTarget(self, action: #selector(clearPasswordText), for: .touchUpInside)
-
+        
         visibleToggleButton.setBackgroundImage(UIImage(systemName: "eye"), for: .normal)
         visibleToggleButton.tintColor = .gray
         visibleToggleButton.addTarget(self, action: #selector(visibleToggle), for: .touchUpInside)
@@ -101,8 +105,10 @@ class ViewController: UIViewController {
         
         loginButton.setTitle("로그인하기", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.backgroundColor = .red
+        loginButton.backgroundColor = .black
         loginButton.layer.cornerRadius = 5
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.gray.cgColor
         
         findIDButton.setTitle("아이디 찾기", for: .normal)
         findIDButton.setTitleColor(.lightGray, for: .normal)
@@ -128,11 +134,7 @@ class ViewController: UIViewController {
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ]
         )
-        
         signinButton.setAttributedTitle(underlineAttrString, for: .normal)
-        
-        
-        
     }
     
     private func setLayout() {
@@ -163,19 +165,19 @@ class ViewController: UIViewController {
             $0.width.equalToSuperview().inset(20)
             $0.height.equalTo(40)
         }
-
+        
         pwTextField.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(10)
             $0.top.bottom.equalToSuperview()
             $0.trailing.equalTo(clearTextButton.snp.leading).offset(-8)
         }
-
+        
         visibleToggleButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(10)
             $0.width.height.equalTo(24)
         }
-
+        
         clearTextButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalTo(visibleToggleButton.snp.leading).offset(-8)
@@ -237,13 +239,13 @@ class ViewController: UIViewController {
             for: .normal
         )
     }
-
+    
     @objc private func clearPasswordText() {
         pwTextField.text = ""
         clearTextButton.isHidden = true
         visibleToggleButton.isHidden = true
     }
-
+    
     @objc private func passwordTextChanged() {
         if pwTextField.text == "" || pwTextField.text == nil{
             clearTextButton.isHidden = true
@@ -254,5 +256,34 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc private func textFieldEditingChanged() {
+        let isIDEmpty = idTextField.text?.isEmpty ?? true
+        let isPWEmpty = pwTextField.text?.isEmpty ?? true
+        
+        loginButton.isEnabled = !(isIDEmpty || isPWEmpty)
+        loginButton.backgroundColor = loginButton.isEnabled ? .red : .black
+    }
+    
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == idTextField {
+            idTextField.layer.borderColor = UIColor.white.cgColor
+            idTextField.layer.borderWidth = 1
+        } else if textField == pwTextField {
+            pwView.layer.borderColor = UIColor.white.cgColor
+            pwView.layer.borderWidth = 1
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == idTextField {
+            idTextField.layer.borderColor = UIColor.clear.cgColor
+            idTextField.layer.borderWidth = 0
+        } else if textField == pwTextField {
+            pwView.layer.borderColor = UIColor.clear.cgColor
+            pwView.layer.borderWidth = 0
+        }
+    }
+}
