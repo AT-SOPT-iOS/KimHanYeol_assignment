@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     private let titleLabel = UILabel()
     private let idTextField = UITextField()
     
-    private let pwStackView = UIStackView()
     private let pwView = UIView()
     private let pwTextField = UITextField()
     lazy private var visibleToggleButton = UIButton()
@@ -75,6 +74,7 @@ class ViewController: UIViewController {
         idTextField.setPlaceholderColor(color: .lightGray)
         idTextField.addLeftPadding(width: 20)
         idTextField.configureDefaultSettings()
+        idTextField.clearButtonMode = .always
         idTextField.layer.cornerRadius = 5
         idTextField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
         idTextField.delegate = self
@@ -283,8 +283,6 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    
     
 }
 
