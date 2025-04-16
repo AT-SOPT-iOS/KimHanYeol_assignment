@@ -109,6 +109,7 @@ class ViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.gray.cgColor
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         findIDButton.setTitle("아이디 찾기", for: .normal)
         findIDButton.setTitleColor(.lightGray, for: .normal)
@@ -244,6 +245,7 @@ class ViewController: UIViewController {
         pwTextField.text = ""
         clearTextButton.isHidden = true
         visibleToggleButton.isHidden = true
+        loginButton.backgroundColor = .black
     }
     
     @objc private func passwordTextChanged() {
@@ -263,6 +265,26 @@ class ViewController: UIViewController {
         loginButton.isEnabled = !(isIDEmpty || isPWEmpty)
         loginButton.backgroundColor = loginButton.isEnabled ? .red : .black
     }
+    
+    @objc private func loginButtonTapped() {
+        let isIDEmpty = idTextField.text?.isEmpty ?? true
+        let isPWEmpty = pwTextField.text?.isEmpty ?? true
+        loginButton.isEnabled = !(isIDEmpty || isPWEmpty)
+        
+        let vc = DetailViewController()
+        vc.navigationItem.hidesBackButton = true
+        vc.delegate = self
+        
+        if loginButton.isEnabled {
+            vc.setLabelText(mainText: idTextField.text!)
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            print("login button disabled")
+        }
+        
+    }
+    
+    
     
 }
 
@@ -285,5 +307,11 @@ extension ViewController: UITextFieldDelegate {
             pwView.layer.borderColor = UIColor.clear.cgColor
             pwView.layer.borderWidth = 0
         }
+    }
+}
+
+extension ViewController: DataBindDelegate {
+    func databind(text: String) {
+        idTextField.text = text
     }
 }
