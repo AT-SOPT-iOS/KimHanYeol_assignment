@@ -32,6 +32,10 @@
 		6CD0F1EE2DC13B1300EFFE7F /* TabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1ED2DC13B1300EFFE7F /* TabViewCell.swift */; };
 		6CD0F1F12DC13B7C00EFFE7F /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1EF2DC13B7C00EFFE7F /* UICollectionViewCell+.swift */; };
 		6CD0F1F22DC13B7C00EFFE7F /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1F02DC13B7C00EFFE7F /* UITableViewCell+.swift */; };
+		6CD0F1F82DC14B4E00EFFE7F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1F62DC14B4E00EFFE7F /* Pretendard-SemiBold.otf */; };
+		6CD0F1F92DC14B4E00EFFE7F /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1F32DC14B4E00EFFE7F /* Pretendard-Bold.otf */; };
+		6CD0F1FA2DC14B4E00EFFE7F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1F42DC14B4E00EFFE7F /* Pretendard-Medium.otf */; };
+		6CD0F1FB2DC14B4E00EFFE7F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1F52DC14B4E00EFFE7F /* Pretendard-Regular.otf */; };
 		6CF93FAC2DAED2380038B5EC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF93FAB2DAED2380038B5EC /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +65,10 @@
 		6CD0F1ED2DC13B1300EFFE7F /* TabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewCell.swift; sourceTree = "<group>"; };
 		6CD0F1EF2DC13B7C00EFFE7F /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		6CD0F1F02DC13B7C00EFFE7F /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		6CD0F1F32DC14B4E00EFFE7F /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		6CD0F1F42DC14B4E00EFFE7F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		6CD0F1F52DC14B4E00EFFE7F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		6CD0F1F62DC14B4E00EFFE7F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		6CF93F822DAEC71B0038B5EC /* SOPT36_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPT36_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,6 +110,7 @@
 		6CD0F1AA2DC1186D00EFFE7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6CD0F1F72DC14B4E00EFFE7F /* Fonts */,
 				6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */,
 				6CD0F1A72DC1186D00EFFE7F /* Info.plist */,
 				6CD0F1A92DC1186D00EFFE7F /* LaunchScreen.storyboard */,
@@ -179,6 +188,17 @@
 				6CD0F1ED2DC13B1300EFFE7F /* TabViewCell.swift */,
 			);
 			path = TabView;
+			sourceTree = "<group>";
+		};
+		6CD0F1F72DC14B4E00EFFE7F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1F32DC14B4E00EFFE7F /* Pretendard-Bold.otf */,
+				6CD0F1F42DC14B4E00EFFE7F /* Pretendard-Medium.otf */,
+				6CD0F1F52DC14B4E00EFFE7F /* Pretendard-Regular.otf */,
+				6CD0F1F62DC14B4E00EFFE7F /* Pretendard-SemiBold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6CF93F792DAEC71B0038B5EC = {
@@ -264,6 +284,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD0F1F82DC14B4E00EFFE7F /* Pretendard-SemiBold.otf in Resources */,
+				6CD0F1F92DC14B4E00EFFE7F /* Pretendard-Bold.otf in Resources */,
+				6CD0F1FA2DC14B4E00EFFE7F /* Pretendard-Medium.otf in Resources */,
+				6CD0F1FB2DC14B4E00EFFE7F /* Pretendard-Regular.otf in Resources */,
 				6CD0F1AE2DC1186D00EFFE7F /* Assets.xcassets in Resources */,
 				6CD0F1B02DC1186D00EFFE7F /* LaunchScreen.storyboard in Resources */,
 			);
