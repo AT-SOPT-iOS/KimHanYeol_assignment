@@ -12,13 +12,17 @@ import Then
 
 final class TabViewController: BaseUIViewController {
     private let headerView = HeaderView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+
     private let tabTitles = ["홈", "드라마", "예능", "영화", "스포츠", "뉴스"]
-    private lazy var tabViewControllers: [UIViewController] = [HomeViewController(),
-                                                               DramaViewController(),
-                                                               EntertainmentViewController(),
-                                                               MovieViewController(),
-                                                               SportsViewController(),
-                                                               NewsViewController()]
+
+    private lazy var tabViewControllers: [BaseView] = [HomeView(),
+                                                       DramaView(),
+                                                       EntertainmentView(),
+                                                       MovieView(),
+                                                       SportsView(),
+                                                       NewsView()]
     private var selectedIndex: Int = 0
     private let tabCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let flowLayout = UICollectionViewFlowLayout()
@@ -29,17 +33,17 @@ final class TabViewController: BaseUIViewController {
         
         view.backgroundColor = .black
         
-        
-        pushViewController(index: selectedIndex)
-        
         setUI()
         setLayout()
         setStyle()
         setEvent()
+        
+        displayContentView(index: selectedIndex)
     }
     
     override func setUI() {
-        view.addSubviews(headerView, tabCollectionView, dividerView)
+        view.addSubviews(headerView, tabCollectionView, dividerView, scrollView)
+        scrollView.addSubview(contentView)
     }
     
     override func setLayout() {
@@ -58,6 +62,17 @@ final class TabViewController: BaseUIViewController {
             $0.top.equalTo(tabCollectionView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
+        }
+        
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(dividerView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview()
+            $0.width.equalToSuperview()
         }
     }
     
@@ -78,6 +93,14 @@ final class TabViewController: BaseUIViewController {
         dividerView.do {
             $0.backgroundColor = .gray4
         }
+        
+        scrollView.do {
+            $0.isScrollEnabled = true
+            $0.showsVerticalScrollIndicator = true
+            $0.clipsToBounds = true
+
+        }
+        
     }
     
     override func setEvent() {
@@ -88,21 +111,15 @@ final class TabViewController: BaseUIViewController {
 }
 
 extension TabViewController {
-    // viewController 전환함수
-    private func pushViewController(index: Int) {
-        let selectedVC = tabViewControllers[index]
-        children.forEach {
-            $0.willMove(toParent: nil)
-            $0.view.removeFromSuperview()
-            $0.removeFromParent()
+    private func displayContentView(index: Int) {
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+
+        let selectedView = tabViewControllers[index]
+        contentView.addSubview(selectedView)
+
+        selectedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        addChild(selectedVC)
-        view.addSubview(selectedVC.view)
-        selectedVC.view.snp.makeConstraints {
-            $0.top.equalTo(tabCollectionView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        selectedVC.didMove(toParent: self)
     }
 }
 
@@ -125,6 +142,7 @@ extension TabViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
         collectionView.reloadData()
-        pushViewController(index: selectedIndex)
+        displayContentView(index: selectedIndex)
     }
 }
+

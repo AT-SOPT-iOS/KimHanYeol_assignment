@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  EntertainmentViewController.swift
 //  SOPT36_Assignment
 //
 //  Created by OneTen on 4/30/25.
@@ -7,24 +7,27 @@
 
 import UIKit
 
-final class NewsViewController: BaseUIViewController {
+final class EntertainmentView: BaseView {
     private var label = UILabel().then {
-        $0.text = "NewsViewController"
+        $0.text = "EntertainmentViewController"
         $0.textAlignment = .center
         $0.textColor = .white
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setUI()
         setLayout()
         setStyle()
-        setEvent()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func setUI() {
-        view.addSubview(label)
+        self.addSubview(label)
     }
     
     override func setLayout() {
@@ -37,7 +40,4 @@ final class NewsViewController: BaseUIViewController {
         
     }
     
-    override func setEvent() {
-        
-    }
 }
