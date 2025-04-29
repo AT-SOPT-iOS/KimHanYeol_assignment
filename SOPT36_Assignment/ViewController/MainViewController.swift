@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MainViewController: UIViewController {
+final class MainViewController: BaseUIViewController {
     private let headerView = HeaderView()
     
     override func viewDidLoad() {
@@ -23,24 +23,23 @@ final class MainViewController: UIViewController {
         setStyle()
         setEvent()
     }
-    
-    private func setUI() {
+
+    override func setUI() {
         view.addSubviews(headerView)
     }
     
-    private func setLayout() {
+    override func setLayout() {
         headerView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(20)
             $0.horizontalEdges.equalToSuperview()
         }
+    }
+    
+    override func setStyle() {
         
     }
     
-    private func setStyle() {
-        
-    }
-    
-    private func setEvent() {
+    override func setEvent() {
         
     }
     

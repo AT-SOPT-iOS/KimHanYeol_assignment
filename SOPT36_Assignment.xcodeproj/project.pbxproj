@@ -20,6 +20,9 @@
 		6CD0F1C22DC1206200EFFE7F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 6CD0F1C12DC1206200EFFE7F /* Then */; };
 		6CD0F1C82DC12E0A00EFFE7F /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1C72DC12E0A00EFFE7F /* UIStackView+.swift */; };
 		6CD0F1CE2DC132C600EFFE7F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1CD2DC132C600EFFE7F /* HeaderView.swift */; };
+		6CD0F1D02DC1345A00EFFE7F /* TopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1CF2DC1345A00EFFE7F /* TopTabView.swift */; };
+		6CD0F1D62DC1363300EFFE7F /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1D52DC1363300EFFE7F /* BaseUIViewController.swift */; };
+		6CD0F1D82DC1371D00EFFE7F /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1D72DC1371D00EFFE7F /* BaseUIView.swift */; };
 		6CF93FAC2DAED2380038B5EC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF93FAB2DAED2380038B5EC /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		6CD0F1BE2DC1203100EFFE7F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6CD0F1C72DC12E0A00EFFE7F /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		6CD0F1CD2DC132C600EFFE7F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		6CD0F1CF2DC1345A00EFFE7F /* TopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabView.swift; sourceTree = "<group>"; };
+		6CD0F1D52DC1363300EFFE7F /* BaseUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		6CD0F1D72DC1371D00EFFE7F /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		6CF93F822DAEC71B0038B5EC /* SOPT36_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPT36_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +95,7 @@
 				6CD0F1A12DC1186D00EFFE7F /* Application */,
 				6CD0F1A52DC1186D00EFFE7F /* Extensions */,
 				6CD0F1AA2DC1186D00EFFE7F /* Resources */,
+				6CD0F1D42DC1361E00EFFE7F /* Global */,
 				6CD0F1CC2DC132A400EFFE7F /* View */,
 				6CD0F1CA2DC1329600EFFE7F /* ViewController */,
 			);
@@ -109,8 +116,26 @@
 			isa = PBXGroup;
 			children = (
 				6CD0F1CD2DC132C600EFFE7F /* HeaderView.swift */,
+				6CD0F1CF2DC1345A00EFFE7F /* TopTabView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6CD0F1D32DC1361E00EFFE7F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1D52DC1363300EFFE7F /* BaseUIViewController.swift */,
+				6CD0F1D72DC1371D00EFFE7F /* BaseUIView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6CD0F1D42DC1361E00EFFE7F /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1D32DC1361E00EFFE7F /* Base */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		6CF93F792DAEC71B0038B5EC = {
@@ -213,9 +238,12 @@
 				6CD0F1B32DC1186D00EFFE7F /* UIFont+.swift in Sources */,
 				6CD0F1B42DC1186D00EFFE7F /* UITextField+.swift in Sources */,
 				6CD0F1B52DC1186D00EFFE7F /* UIView+.swift in Sources */,
+				6CD0F1D82DC1371D00EFFE7F /* BaseUIView.swift in Sources */,
 				6CD0F1CE2DC132C600EFFE7F /* HeaderView.swift in Sources */,
+				6CD0F1D02DC1345A00EFFE7F /* TopTabView.swift in Sources */,
 				6CD0F1B62DC1186D00EFFE7F /* DetailViewController.swift in Sources */,
 				6CD0F1B72DC1186D00EFFE7F /* ViewController.swift in Sources */,
+				6CD0F1D62DC1363300EFFE7F /* BaseUIViewController.swift in Sources */,
 				6CD0F1C82DC12E0A00EFFE7F /* UIStackView+.swift in Sources */,
 				6CD0F1BF2DC1203100EFFE7F /* MainViewController.swift in Sources */,
 			);
