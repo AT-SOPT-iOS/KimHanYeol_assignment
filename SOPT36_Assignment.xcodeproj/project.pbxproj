@@ -7,33 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CD0F1AE2DC1186D00EFFE7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */; };
+		6CD0F1B02DC1186D00EFFE7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A92DC1186D00EFFE7F /* LaunchScreen.storyboard */; };
+		6CD0F1B12DC1186D00EFFE7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F19F2DC1186D00EFFE7F /* AppDelegate.swift */; };
+		6CD0F1B22DC1186D00EFFE7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A02DC1186D00EFFE7F /* SceneDelegate.swift */; };
+		6CD0F1B32DC1186D00EFFE7F /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A22DC1186D00EFFE7F /* UIFont+.swift */; };
+		6CD0F1B42DC1186D00EFFE7F /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A32DC1186D00EFFE7F /* UITextField+.swift */; };
+		6CD0F1B52DC1186D00EFFE7F /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A42DC1186D00EFFE7F /* UIView+.swift */; };
+		6CD0F1B62DC1186D00EFFE7F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1AB2DC1186D00EFFE7F /* DetailViewController.swift */; };
+		6CD0F1B72DC1186D00EFFE7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F1AC2DC1186D00EFFE7F /* ViewController.swift */; };
 		6CF93FAC2DAED2380038B5EC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF93FAB2DAED2380038B5EC /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CD0F19F2DC1186D00EFFE7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6CD0F1A02DC1186D00EFFE7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6CD0F1A22DC1186D00EFFE7F /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		6CD0F1A32DC1186D00EFFE7F /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		6CD0F1A42DC1186D00EFFE7F /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6CD0F1A72DC1186D00EFFE7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CD0F1A82DC1186D00EFFE7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6CD0F1AB2DC1186D00EFFE7F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6CD0F1AC2DC1186D00EFFE7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6CF93F822DAEC71B0038B5EC /* SOPT36_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPT36_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6CF93F942DAEC71C0038B5EC /* Exceptions for "SOPT36_Assignment" folder in "SOPT36_Assignment" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/Info.plist,
-			);
-			target = 6CF93F812DAEC71B0038B5EC /* SOPT36_Assignment */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		6CF93F842DAEC71B0038B5EC /* SOPT36_Assignment */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6CF93F942DAEC71C0038B5EC /* Exceptions for "SOPT36_Assignment" folder in "SOPT36_Assignment" target */,
-			);
-			path = SOPT36_Assignment;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6CF93F7F2DAEC71B0038B5EC /* Frameworks */ = {
@@ -47,10 +45,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CD0F1A12DC1186D00EFFE7F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F19F2DC1186D00EFFE7F /* AppDelegate.swift */,
+				6CD0F1A02DC1186D00EFFE7F /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6CD0F1A52DC1186D00EFFE7F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1A22DC1186D00EFFE7F /* UIFont+.swift */,
+				6CD0F1A32DC1186D00EFFE7F /* UITextField+.swift */,
+				6CD0F1A42DC1186D00EFFE7F /* UIView+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6CD0F1AA2DC1186D00EFFE7F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */,
+				6CD0F1A72DC1186D00EFFE7F /* Info.plist */,
+				6CD0F1A92DC1186D00EFFE7F /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6CD0F1AD2DC1186D00EFFE7F /* SOPT36_Assignment */ = {
+			isa = PBXGroup;
+			children = (
+				6CD0F1A12DC1186D00EFFE7F /* Application */,
+				6CD0F1A52DC1186D00EFFE7F /* Extensions */,
+				6CD0F1AA2DC1186D00EFFE7F /* Resources */,
+				6CD0F1AB2DC1186D00EFFE7F /* DetailViewController.swift */,
+				6CD0F1AC2DC1186D00EFFE7F /* ViewController.swift */,
+			);
+			path = SOPT36_Assignment;
+			sourceTree = "<group>";
+		};
 		6CF93F792DAEC71B0038B5EC = {
 			isa = PBXGroup;
 			children = (
-				6CF93F842DAEC71B0038B5EC /* SOPT36_Assignment */,
+				6CD0F1AD2DC1186D00EFFE7F /* SOPT36_Assignment */,
 				6CF93F832DAEC71B0038B5EC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,9 +116,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				6CF93F842DAEC71B0038B5EC /* SOPT36_Assignment */,
 			);
 			name = SOPT36_Assignment;
 			packageProductDependencies = (
@@ -131,6 +167,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD0F1AE2DC1186D00EFFE7F /* Assets.xcassets in Resources */,
+				6CD0F1B02DC1186D00EFFE7F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +179,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD0F1B12DC1186D00EFFE7F /* AppDelegate.swift in Sources */,
+				6CD0F1B22DC1186D00EFFE7F /* SceneDelegate.swift in Sources */,
+				6CD0F1B32DC1186D00EFFE7F /* UIFont+.swift in Sources */,
+				6CD0F1B42DC1186D00EFFE7F /* UITextField+.swift in Sources */,
+				6CD0F1B52DC1186D00EFFE7F /* UIView+.swift in Sources */,
+				6CD0F1B62DC1186D00EFFE7F /* DetailViewController.swift in Sources */,
+				6CD0F1B72DC1186D00EFFE7F /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6CD0F1A92DC1186D00EFFE7F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CD0F1A82DC1186D00EFFE7F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6CF93F962DAEC71C0038B5EC /* Debug */ = {
