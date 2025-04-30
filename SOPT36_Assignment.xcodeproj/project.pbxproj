@@ -43,6 +43,9 @@
 		6CD0F2212DC236C000EFFE7F /* LivePopularProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F2202DC236C000EFFE7F /* LivePopularProgramCell.swift */; };
 		6CD0F2232DC23B8F00EFFE7F /* LivePopularMoviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F2222DC23B8F00EFFE7F /* LivePopularMoviewView.swift */; };
 		6CD0F2252DC23BC300EFFE7F /* LivePopularMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F2242DC23BC300EFFE7F /* LivePopularMovieCell.swift */; };
+		6CD0F2272DC246BD00EFFE7F /* BaseballLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F2262DC246BD00EFFE7F /* BaseballLogoView.swift */; };
+		6CD0F2292DC247A700EFFE7F /* BaseballModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F2282DC247A700EFFE7F /* BaseballModel.swift */; };
+		6CD0F22B2DC24ADB00EFFE7F /* BaseballCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F22A2DC24ADB00EFFE7F /* BaseballCell.swift */; };
 		6CF93FAC2DAED2380038B5EC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6CF93FAB2DAED2380038B5EC /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +86,9 @@
 		6CD0F2202DC236C000EFFE7F /* LivePopularProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePopularProgramCell.swift; sourceTree = "<group>"; };
 		6CD0F2222DC23B8F00EFFE7F /* LivePopularMoviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePopularMoviewView.swift; sourceTree = "<group>"; };
 		6CD0F2242DC23BC300EFFE7F /* LivePopularMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePopularMovieCell.swift; sourceTree = "<group>"; };
+		6CD0F2262DC246BD00EFFE7F /* BaseballLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballLogoView.swift; sourceTree = "<group>"; };
+		6CD0F2282DC247A700EFFE7F /* BaseballModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballModel.swift; sourceTree = "<group>"; };
+		6CD0F22A2DC24ADB00EFFE7F /* BaseballCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballCell.swift; sourceTree = "<group>"; };
 		6CF93F822DAEC71B0038B5EC /* SOPT36_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPT36_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -271,6 +277,7 @@
 				6CD0F20E2DC1FCCE00EFFE7F /* TodayTopView.swift */,
 				6CD0F21C2DC20E9C00EFFE7F /* LivePopularProgramView.swift */,
 				6CD0F2222DC23B8F00EFFE7F /* LivePopularMoviewView.swift */,
+				6CD0F2262DC246BD00EFFE7F /* BaseballLogoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -281,6 +288,7 @@
 				6CD0F2132DC200BE00EFFE7F /* TodayTopCollectionViewCell.swift */,
 				6CD0F2202DC236C000EFFE7F /* LivePopularProgramCell.swift */,
 				6CD0F2242DC23BC300EFFE7F /* LivePopularMovieCell.swift */,
+				6CD0F22A2DC24ADB00EFFE7F /* BaseballCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 			children = (
 				6CD0F2182DC2023700EFFE7F /* PosterModel.swift */,
 				6CD0F21E2DC2109D00EFFE7F /* ProgramModel.swift */,
+				6CD0F2282DC247A700EFFE7F /* BaseballModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,12 +405,14 @@
 				6CD0F21F2DC2109D00EFFE7F /* ProgramModel.swift in Sources */,
 				6CD0F1B12DC1186D00EFFE7F /* AppDelegate.swift in Sources */,
 				6CD0F1B22DC1186D00EFFE7F /* SceneDelegate.swift in Sources */,
+				6CD0F22B2DC24ADB00EFFE7F /* BaseballCell.swift in Sources */,
 				6CD0F1B32DC1186D00EFFE7F /* UIFont+.swift in Sources */,
 				6CD0F1E22DC1397100EFFE7F /* DramaView.swift in Sources */,
 				6CD0F1B42DC1186D00EFFE7F /* UITextField+.swift in Sources */,
 				6CD0F1B52DC1186D00EFFE7F /* UIView+.swift in Sources */,
 				6CD0F1E02DC1396800EFFE7F /* HomeView.swift in Sources */,
 				6CD0F1EA2DC1399500EFFE7F /* NewsView.swift in Sources */,
+				6CD0F2272DC246BD00EFFE7F /* BaseballLogoView.swift in Sources */,
 				6CD0F21D2DC20E9C00EFFE7F /* LivePopularProgramView.swift in Sources */,
 				6CD0F1E62DC1398700EFFE7F /* MovieView.swift in Sources */,
 				6CD0F1F12DC13B7C00EFFE7F /* UICollectionViewCell+.swift in Sources */,
@@ -412,6 +423,7 @@
 				6CD0F1E42DC1397D00EFFE7F /* EntertainmentView.swift in Sources */,
 				6CD0F1EE2DC13B1300EFFE7F /* TabViewCell.swift in Sources */,
 				6CD0F1DD2DC138FD00EFFE7F /* DetailViewController.swift in Sources */,
+				6CD0F2292DC247A700EFFE7F /* BaseballModel.swift in Sources */,
 				6CD0F2212DC236C000EFFE7F /* LivePopularProgramCell.swift in Sources */,
 				6CD0F2252DC23BC300EFFE7F /* LivePopularMovieCell.swift in Sources */,
 				6CD0F1DE2DC138FD00EFFE7F /* ViewController.swift in Sources */,
