@@ -17,12 +17,7 @@ final class GahyunPick: UIView {
         collectionViewLayout: UICollectionViewLayout()
     )
     private let mockData = GahyunPickModel.dummy()
-    private let pageControl = UIPageControl().then {
-        $0.numberOfPages = 6
-        $0.currentPage = 0
-        $0.currentPageIndicatorTintColor = .white
-        $0.pageIndicatorTintColor = .gray4
-    }
+    private let pageControl = UIPageControl()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,7 +58,7 @@ final class GahyunPick: UIView {
     private func setStyle() {
         gahyunPickLabel.do {
             $0.text = "김가현PD의 인생작 TOP 6"
-            $0.font = .soptFont(.subhead1Bold)
+            $0.font = .soptFont(.subhead3Bold)
             $0.textColor = .white
         }
         
@@ -84,14 +79,24 @@ final class GahyunPick: UIView {
             $0.dataSource = self
             $0.backgroundColor = .black
             $0.showsHorizontalScrollIndicator = false
-            $0.isPagingEnabled = true
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageWidth = scrollView.frame.width
-        let currentPage = Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
-        updatePagingIcon(currentPage: currentPage)
+    func scrollViewWillEndDragging(
+        _ scrollView: UIScrollView,
+        withVelocity velocity: CGPoint,
+        targetContentOffset: UnsafeMutablePointer<CGPoint>
+    ) {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        let estimatedIndex = scrollView.contentOffset.x / cellWidthIncludingSpacing
+        let targetIndex = velocity.x == 0 ? round(estimatedIndex) : (velocity.x > 0 ? ceil(estimatedIndex) : floor(estimatedIndex))
+
+        let xOffset = targetIndex * cellWidthIncludingSpacing - layout.sectionInset.left
+        targetContentOffset.pointee = CGPoint(x: xOffset, y: 0)
+
+        updatePagingIcon(currentPage: Int(targetIndex))
     }
     
     func updatePagingIcon(currentPage: Int) {
@@ -130,4 +135,8 @@ extension GahyunPick: UICollectionViewDataSource {
         
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        updatePagingIcon(currentPage: indexPath.row)
+//    }
 }
