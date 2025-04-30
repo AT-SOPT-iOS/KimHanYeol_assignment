@@ -7,14 +7,12 @@
 
 import UIKit
 
+import SnapKit
+import Then
+
 final class HomeView: BaseView {
-    private let titleImage = UIImageView()
-    
-    private var label = UILabel().then {
-        $0.text = "NewsViewController"
-        $0.textAlignment = .center
-        $0.textColor = .white
-    }
+    private let titleImage = HomeTitleImage()
+    private let todayTopView = TodayTopView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +27,7 @@ final class HomeView: BaseView {
     }
     
     override func setUI() {
-        self.addSubviews(titleImage,label)
+        self.addSubviews(titleImage, todayTopView)
     }
     
     override func setLayout() {
@@ -39,20 +37,15 @@ final class HomeView: BaseView {
             $0.height.equalTo(400)
         }
         
-        label.snp.makeConstraints {
-            $0.top.equalTo(titleImage.snp.bottom)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(400)
+        todayTopView.snp.makeConstraints {
+            $0.top.equalTo(titleImage.snp.bottom).offset(10)
+            $0.height.equalTo(250)
             $0.bottom.equalToSuperview()
         }
     }
     
     override func setStyle() {
-        titleImage.do {
-            $0.image = UIImage(resource: .posterImage6)
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
-        }
+
     }
     
 }
