@@ -32,7 +32,8 @@ final class MovieView: UIView {
     
     func setLayout() {
         label.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalToSuperview().inset(200)
+            $0.centerX.equalToSuperview()
         }
     }
     
