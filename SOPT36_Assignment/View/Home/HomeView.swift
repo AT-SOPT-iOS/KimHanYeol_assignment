@@ -16,6 +16,8 @@ final class HomeView: UIView {
     private let livePopularProgramView = LivePopularProgramView()
     private let livePopularMoviewView = LivePopularMoviewView()
     private let baseballLogoView = BaseballLogoView()
+    private let logoView = LogoView()
+    private let gahyunPick = GahyunPick()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +32,15 @@ final class HomeView: UIView {
     }
     
     func setUI() {
-        self.addSubviews(titleImage, todayTopView, livePopularProgramView, livePopularMoviewView, baseballLogoView)
+        self.addSubviews(
+            titleImage,
+            todayTopView,
+            livePopularProgramView,
+            livePopularMoviewView,
+            baseballLogoView,
+            logoView,
+            gahyunPick
+        )
     }
     
     func setLayout() {
@@ -62,12 +72,24 @@ final class HomeView: UIView {
             $0.top.equalTo(livePopularMoviewView.snp.bottom).offset(30)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50)
+        }
+        
+        logoView.snp.makeConstraints {
+            $0.top.equalTo(baseballLogoView.snp.bottom).offset(30)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(50)
+        }
+        
+        gahyunPick.snp.makeConstraints {
+            $0.top.equalTo(logoView.snp.bottom).offset(25)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
         }
     }
     
     func setStyle() {
-
+        
     }
     
 }

@@ -77,6 +77,7 @@ final class LivePopularMoviewView: UIView {
             $0.delegate = self
             $0.dataSource = self
             $0.backgroundColor = .black
+            $0.showsHorizontalScrollIndicator = false
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  BaseballLogoView.swift
+//  LogoView.swift
 //  SOPT36_Assignment
 //
 //  Created by OneTen on 4/30/25.
@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 import Then
 
-final class BaseballLogoView: UIView {
+final class LogoView: UIView {
     private var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
     )
-    private let mockData = BaseballModel.dummy()
+    private let mockData = LogoModel.dummy()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,8 +47,8 @@ final class BaseballLogoView: UIView {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             $0.collectionViewLayout = layout
-            $0.register(BaseballCell.self,
-                        forCellWithReuseIdentifier: BaseballCell.cellIdentifier)
+            $0.register(LogoCell.self,
+                        forCellWithReuseIdentifier: LogoCell.cellIdentifier)
             $0.delegate = self
             $0.dataSource = self
             $0.backgroundColor = .black
@@ -58,30 +58,30 @@ final class BaseballLogoView: UIView {
     
 }
 
-extension BaseballLogoView: UICollectionViewDelegateFlowLayout {
+extension LogoView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        7
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 80, height: 50)
+        CGSize(width: 90, height: 45)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
     }
 }
 
-extension BaseballLogoView: UICollectionViewDataSource {
+extension LogoView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mockData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: BaseballCell
+            withReuseIdentifier: LogoCell
                 .cellIdentifier,
-            for: indexPath) as? BaseballCell else {
+            for: indexPath) as? LogoCell else {
             return UICollectionViewCell()
         }
 
