@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieView: BaseView {
+final class MovieView: UIView {
     private var label = UILabel().then {
         $0.text = "MovieViewController"
         $0.textAlignment = .center
@@ -26,17 +26,17 @@ final class MovieView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setUI() {
+    func setUI() {
         self.addSubview(label)
     }
     
-    override func setLayout() {
+    func setLayout() {
         label.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
     
-    override func setStyle() {
+    func setStyle() {
         
     }
 

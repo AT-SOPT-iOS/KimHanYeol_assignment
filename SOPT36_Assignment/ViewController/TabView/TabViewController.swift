@@ -17,7 +17,7 @@ final class TabViewController: BaseUIViewController {
 
     private let tabTitles = ["홈", "드라마", "예능", "영화", "스포츠", "뉴스"]
 
-    private lazy var tabViewControllers: [BaseView] = [HomeView(),
+    private lazy var tabViewControllers: [UIView] = [HomeView(),
                                                        DramaView(),
                                                        EntertainmentView(),
                                                        MovieView(),

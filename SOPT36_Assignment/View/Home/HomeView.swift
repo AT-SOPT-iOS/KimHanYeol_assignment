@@ -10,9 +10,10 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeView: BaseView {
+final class HomeView: UIView {
     private let titleImage = HomeTitleImage()
     private let todayTopView = TodayTopView()
+    private let livePopularProgramView = LivePopularProgramView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,11 +27,11 @@ final class HomeView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setUI() {
-        self.addSubviews(titleImage, todayTopView)
+    func setUI() {
+        self.addSubviews(titleImage, todayTopView, livePopularProgramView)
     }
     
-    override func setLayout() {
+    func setLayout() {
         titleImage.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
@@ -41,11 +42,17 @@ final class HomeView: BaseView {
             $0.top.equalTo(titleImage.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
+        }
+        
+        livePopularProgramView.snp.makeConstraints {
+            $0.top.equalTo(todayTopView.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
         }
     }
     
-    override func setStyle() {
+    func setStyle() {
 
     }
     

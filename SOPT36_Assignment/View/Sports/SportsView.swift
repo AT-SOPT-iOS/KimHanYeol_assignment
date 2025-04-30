@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SportsView: BaseView {
+final class SportsView: UIView {
     private var label = UILabel().then {
         $0.text = "SportsViewController"
         $0.textAlignment = .center
@@ -26,17 +26,17 @@ final class SportsView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setUI() {
+    func setUI() {
         self.addSubview(label)
     }
     
-    override func setLayout() {
+    func setLayout() {
         label.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
     
-    override func setStyle() {
+    func setStyle() {
         
     }
     

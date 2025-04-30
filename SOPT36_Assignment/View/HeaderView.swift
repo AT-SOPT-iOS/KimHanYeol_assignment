@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HeaderView: BaseView {
+final class HeaderView: UIView {
     private let tvingLogo = UIImageView()
     private let searchIcon = UIImageView()
     private let tvingIcon = UIImageView()
@@ -27,11 +27,11 @@ final class HeaderView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setUI() {
+    func setUI() {
         addSubviews(tvingLogo, searchIcon, tvingIcon)
     }
 
-    override func setLayout() {
+    func setLayout() {
         self.snp.makeConstraints {
             $0.height.equalTo(80)
         }
@@ -56,7 +56,7 @@ final class HeaderView: BaseView {
         }
     }
 
-    override func setStyle() {
+    func setStyle() {
         tvingLogo.do {
             $0.image = UIImage(resource: .tvingLogo)
             $0.contentMode = .scaleAspectFill

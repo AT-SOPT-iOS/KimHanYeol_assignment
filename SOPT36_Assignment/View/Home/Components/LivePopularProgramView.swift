@@ -1,5 +1,5 @@
 //
-//  TodayTopView.swift
+//  LivePopularProgramView.swift
 //  SOPT36_Assignment
 //
 //  Created by OneTen on 4/30/25.
@@ -7,14 +7,19 @@
 
 import UIKit
 
-final class TodayTopView: UIView {
-    private var todayToplabel = UILabel()
+import SnapKit
+import Then
+
+final class LivePopularProgramView: UIView {
+    private let livePopularProgramLabel = UILabel()
+    private let moreButton = UIButton()
     private var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
     )
-    private let mockData = PosterModel.dummy()
-
+    private let mockData = ProgramModel.dummy()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -22,72 +27,87 @@ final class TodayTopView: UIView {
         setLayout()
         setStyle()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUI() {
-        self.addSubviews(todayToplabel, collectionView)
+    private func setUI() {
+        self.addSubviews(livePopularProgramLabel, moreButton, collectionView)
     }
     
-    func setLayout() {
-        todayToplabel.snp.makeConstraints {
+    private func setLayout() {
+        livePopularProgramLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(12)
             $0.height.equalTo(23)
         }
         
+        moreButton.snp.makeConstraints {
+            $0.centerY.equalTo(livePopularProgramLabel)
+            $0.trailing.equalToSuperview().inset(4)
+        }
+        
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(todayToplabel.snp.bottom).offset(9)
+            $0.top.equalTo(livePopularProgramLabel.snp.bottom).offset(9)
             $0.width.equalToSuperview()
             $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
         }
     }
     
-    func setStyle() {
-        todayToplabel.do {
-            $0.text = "오늘의 티빙 TOP 20"
+    private func setStyle() {
+        livePopularProgramLabel.do {
+            $0.text = "실시간 인기 LIVE"
             $0.font = .soptFont(.subhead1Bold)
             $0.textColor = .white
+        }
+        
+        moreButton.do {
+            $0.setTitle("더보기", for: .normal)
+            $0.setTitleColor(.gray2, for: .normal)
+            $0.titleLabel?.font = .customFont(weight: .semiBold, size: 12)
         }
         
         collectionView.do {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             $0.collectionViewLayout = layout
-            $0.register(TodayTopCollectionViewCell.self,
-                        forCellWithReuseIdentifier: TodayTopCollectionViewCell.cellIdentifier)
+            $0.register(LivePopularProgramCell.self,
+                        forCellWithReuseIdentifier: LivePopularProgramCell.cellIdentifier)
             $0.delegate = self
             $0.dataSource = self
             $0.backgroundColor = .black
         }
     }
     
+    
 }
 
-extension TodayTopView: UICollectionViewDelegateFlowLayout {
+extension LivePopularProgramView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        5
+        10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 150, height: 150)
+        CGSize(width: 160, height: 150)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
+    }
 }
 
-extension TodayTopView: UICollectionViewDataSource {
+extension LivePopularProgramView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mockData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: TodayTopCollectionViewCell
+            withReuseIdentifier: LivePopularProgramCell
                 .cellIdentifier,
-            for: indexPath) as? TodayTopCollectionViewCell else {
+            for: indexPath) as? LivePopularProgramCell else {
             return UICollectionViewCell()
         }
 
