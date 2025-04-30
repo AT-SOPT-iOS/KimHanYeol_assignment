@@ -18,6 +18,7 @@ final class HomeView: UIView {
     private let baseballLogoView = BaseballLogoView()
     private let logoView = LogoView()
     private let gahyunPick = GahyunPick()
+    private let noticeView = NoticeView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +40,8 @@ final class HomeView: UIView {
             livePopularMoviewView,
             baseballLogoView,
             logoView,
-            gahyunPick
+            gahyunPick,
+            noticeView
         )
     }
     
@@ -83,7 +85,13 @@ final class HomeView: UIView {
         gahyunPick.snp.makeConstraints {
             $0.top.equalTo(logoView.snp.bottom).offset(25)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(150)
+        }
+        
+        noticeView.snp.makeConstraints {
+            $0.top.equalTo(gahyunPick.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
             $0.bottom.equalToSuperview()
         }
     }

@@ -82,6 +82,10 @@ final class GahyunPick: UIView {
         }
     }
     
+    private func updatePagingIcon(currentPage: Int) {
+        pageControl.currentPage = currentPage
+    }
+    
     func scrollViewWillEndDragging(
         _ scrollView: UIScrollView,
         withVelocity velocity: CGPoint,
@@ -98,10 +102,6 @@ final class GahyunPick: UIView {
 
         updatePagingIcon(currentPage: Int(targetIndex))
     }
-    
-    func updatePagingIcon(currentPage: Int) {
-        pageControl.currentPage = currentPage
-    }
 }
 
 extension GahyunPick: UICollectionViewDelegateFlowLayout {
@@ -110,7 +110,7 @@ extension GahyunPick: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 160, height: 150)
+        CGSize(width: 160, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
