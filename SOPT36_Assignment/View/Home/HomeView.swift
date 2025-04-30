@@ -14,6 +14,7 @@ final class HomeView: UIView {
     private let titleImage = HomeTitleImage()
     private let todayTopView = TodayTopView()
     private let livePopularProgramView = LivePopularProgramView()
+    private let livePopularMoviewView = LivePopularMoviewView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +29,7 @@ final class HomeView: UIView {
     }
     
     func setUI() {
-        self.addSubviews(titleImage, todayTopView, livePopularProgramView)
+        self.addSubviews(titleImage, todayTopView, livePopularProgramView, livePopularMoviewView)
     }
     
     func setLayout() {
@@ -46,6 +47,12 @@ final class HomeView: UIView {
         
         livePopularProgramView.snp.makeConstraints {
             $0.top.equalTo(todayTopView.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
+        }
+        
+        livePopularMoviewView.snp.makeConstraints {
+            $0.top.equalTo(livePopularProgramView.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
             $0.bottom.equalToSuperview()

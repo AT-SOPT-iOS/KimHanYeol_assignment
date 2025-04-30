@@ -1,5 +1,5 @@
 //
-//  TodayTopView.swift
+//  LivePopularMoviewView.swift
 //  SOPT36_Assignment
 //
 //  Created by OneTen on 4/30/25.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class TodayTopView: UIView {
-    private var todayToplabel = UILabel()
+final class LivePopularMoviewView: UIView {
+    private var livePopularMoviewLabel = UILabel()
+    private let moreButton = UIButton()
     private var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
@@ -28,18 +29,23 @@ final class TodayTopView: UIView {
     }
     
     func setUI() {
-        self.addSubviews(todayToplabel, collectionView)
+        self.addSubviews(livePopularMoviewLabel, moreButton, collectionView)
     }
     
     func setLayout() {
-        todayToplabel.snp.makeConstraints {
+        livePopularMoviewLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(12)
             $0.height.equalTo(23)
         }
         
+        moreButton.snp.makeConstraints {
+            $0.centerY.equalTo(livePopularMoviewLabel)
+            $0.trailing.equalToSuperview().inset(4)
+        }
+        
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(todayToplabel.snp.bottom).offset(9)
+            $0.top.equalTo(livePopularMoviewLabel.snp.bottom).offset(9)
             $0.width.equalToSuperview()
             $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
@@ -47,18 +53,24 @@ final class TodayTopView: UIView {
     }
     
     func setStyle() {
-        todayToplabel.do {
-            $0.text = "오늘의 티빙 TOP 20"
+        livePopularMoviewLabel.do {
+            $0.text = "실시간 인기 영화"
             $0.font = .soptFont(.subhead1Bold)
             $0.textColor = .white
+        }
+        
+        moreButton.do {
+            $0.setTitle("더보기", for: .normal)
+            $0.setTitleColor(.gray2, for: .normal)
+            $0.titleLabel?.font = .customFont(weight: .semiBold, size: 12)
         }
         
         collectionView.do {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
             $0.collectionViewLayout = layout
-            $0.register(TodayTopCollectionViewCell.self,
-                        forCellWithReuseIdentifier: TodayTopCollectionViewCell.cellIdentifier)
+            $0.register(LivePopularMovieCell.self,
+                        forCellWithReuseIdentifier: LivePopularMovieCell.cellIdentifier)
             $0.delegate = self
             $0.dataSource = self
             $0.backgroundColor = .black
@@ -67,27 +79,30 @@ final class TodayTopView: UIView {
     
 }
 
-extension TodayTopView: UICollectionViewDelegateFlowLayout {
+extension LivePopularMoviewView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        10
+        5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 150, height: 150)
+        CGSize(width: 120, height: 150)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
+    }
 }
 
-extension TodayTopView: UICollectionViewDataSource {
+extension LivePopularMoviewView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mockData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: TodayTopCollectionViewCell
+            withReuseIdentifier: LivePopularMovieCell
                 .cellIdentifier,
-            for: indexPath) as? TodayTopCollectionViewCell else {
+            for: indexPath) as? LivePopularMovieCell else {
             return UICollectionViewCell()
         }
 

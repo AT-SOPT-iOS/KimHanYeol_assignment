@@ -67,6 +67,7 @@ class LivePopularProgramCell: UICollectionViewCell {
         posterImage.do {
             $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true
+            $0.layer.cornerRadius = 3
         }
         
         indexLabel.do {

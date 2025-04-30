@@ -98,7 +98,6 @@ final class TabViewController: BaseUIViewController {
             $0.isScrollEnabled = true
             $0.showsVerticalScrollIndicator = true
             $0.clipsToBounds = true
-
         }
         
     }
