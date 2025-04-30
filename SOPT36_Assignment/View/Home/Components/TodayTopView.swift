@@ -13,6 +13,7 @@ final class TodayTopView: BaseView {
         frame: .zero,
         collectionViewLayout: UICollectionViewLayout()
     )
+    private let mockData = PosterModel.dummy()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +40,8 @@ final class TodayTopView: BaseView {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(todayToplabel.snp.bottom).offset(9)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
         }
     }
@@ -52,27 +55,45 @@ final class TodayTopView: BaseView {
         
         collectionView.do {
             let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
             $0.collectionViewLayout = layout
-            $0.delegate = self
-            $0.dataSource = self
             $0.register(TodayTopCollectionViewCell.self,
                         forCellWithReuseIdentifier: TodayTopCollectionViewCell.cellIdentifier)
+            $0.delegate = self
+            $0.dataSource = self
+            $0.backgroundColor = .black
         }
-        
     }
     
 }
 
 extension TodayTopView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 150, height: 150)
+    }
     
 }
 
 extension TodayTopView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return mockData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TodayTopCollectionViewCell
+                .cellIdentifier,
+            for: indexPath) as? TodayTopCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        cell.configure(model: mockData[indexPath.row])
+        print(cell)
+        
+        return cell
     }
 }

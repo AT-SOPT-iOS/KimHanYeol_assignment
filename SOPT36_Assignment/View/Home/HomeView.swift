@@ -39,7 +39,8 @@ final class HomeView: BaseView {
         
         todayTopView.snp.makeConstraints {
             $0.top.equalTo(titleImage.snp.bottom).offset(10)
-            $0.height.equalTo(250)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(200)
             $0.bottom.equalToSuperview()
         }
     }
