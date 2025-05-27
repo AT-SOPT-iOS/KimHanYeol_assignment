@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum stickyHeaderType: String, CaseIterable {
+enum StickyHeaderType: String, CaseIterable {
     case home = "홈"
     case drame = "드라마"
     case entertainment = "예능"
@@ -17,28 +17,46 @@ enum stickyHeaderType: String, CaseIterable {
 }
 
 struct MainView: View {
-    @State var selectedTab: stickyHeaderType = .home
+    
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .black
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.font: self.font(.system(size: 17, weight: .bold))], for: .normal)
+    }
+    
+    @State var selectedTab: StickyHeaderType = .home
     
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
                 tvingHeaderSection
-
-                Picker("Choose a Side", selection: $selectedTab) {
-                        ForEach(stickyHeaderType.allCases, id: \.self) {
-                            Text($0.rawValue)
+                
+                HStack(spacing: 10) {
+                    ForEach(StickyHeaderType.allCases, id: \.self) { tab in
+                        VStack(spacing: 0) {
+                            Text(tab.rawValue)
+                                .font(.system(size: 17, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(height: 27)
+                                
+                                .onTapGesture {
+                                    selectedTab = tab
+                                }
+                            
+                            Rectangle()
+                                .frame(height: 3)
+                                .foregroundColor(tab == selectedTab ? .white : .clear)
+                                .padding(.top, 7)
                         }
+                    }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
                 
                 mainBodySection
-                
             }
         }
         .ignoresSafeArea()
         .background(.black)
-
+        
     }
 }
 
@@ -82,8 +100,6 @@ extension MainView {
             Text("뉴스")
         }
     }
-    
-    
     
 }
 
