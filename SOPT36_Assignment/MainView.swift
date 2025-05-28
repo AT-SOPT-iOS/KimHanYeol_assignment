@@ -16,9 +16,19 @@ enum StickyHeaderType: String, CaseIterable {
     case news = "뉴스"
 }
 
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: [Int: CGFloat] = [:]
+    
+    static func reduce(value: inout [Int : CGFloat], nextValue: () -> [Int : CGFloat]) {
+        value.merge(nextValue(), uniquingKeysWith: { $1 })
+    }
+}
+
 struct MainView: View {
     @State var selectedTab: StickyHeaderType = .home
-    
+    @State private var currentIndex: Int = 0
+    @State private var scrollOffsets: [Int: CGFloat] = [:]
+
     let rows = [GridItem(.flexible())]
     let titleImages = PosterModel.dummy()
     let liveImages = ProgramModel.dummy()
@@ -30,26 +40,21 @@ struct MainView: View {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews:[.sectionHeaders]) {
                 tvingHeaderSection
                 Section(header: stickyHeaderSction){
-                    titleImageSection
-                    todayTvingSection
-                    livePopularSection
-                    movieSection
-                    baseballSection
-                    logoSection
-                    gahyunSection
-                    noticeSection
-                    etcSection
+                    mainBodySection
                 }
             }
         }
         .scrollIndicators(.hidden)
         .clipped()
         .background(.black)
-        
     }
 }
 
+
+// MARK: - Header $ TabView Section
+
 extension MainView {
+    @ViewBuilder
     private var tvingHeaderSection: some View {
         HStack(alignment: .center, spacing: 0) {
             Image(.tvingLogo)
@@ -72,6 +77,7 @@ extension MainView {
         }
     }
     
+    @ViewBuilder
     private var stickyHeaderSction: some View {
         HStack(spacing: 10) {
             ForEach(StickyHeaderType.allCases, id: \.self) { tab in
@@ -96,6 +102,45 @@ extension MainView {
         .background(.black)
     }
     
+    @ViewBuilder
+    private var mainBodySection: some View {
+        switch selectedTab {
+        case .home:
+            VStack(alignment: .leading, spacing: 0) {
+                titleImageSection
+                todayTvingSection
+                livePopularSection
+                movieSection
+                baseballSection
+                logoSection
+                gahyunSection
+                noticeSection
+                etcSection
+            }
+        case .drame:
+            Text("드라마")
+                .foregroundStyle(.white)
+        case .entertainment:
+            Text("예능")
+                .foregroundStyle(.white)
+        case .movie:
+            Text("영화")
+                .foregroundStyle(.white)
+        case .news:
+            Text("뉴스")
+                .foregroundStyle(.white)
+        case .sports:
+            Text("스포츠")
+                .foregroundStyle(.white)
+        }
+    }
+}
+
+
+// MARK: - Home View Section
+
+extension MainView {
+    @ViewBuilder
     private var titleImageSection: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: rows) {
@@ -109,6 +154,7 @@ extension MainView {
         }
     }
     
+    @ViewBuilder
     private var todayTvingSection: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("오늘의 티빙 TOP 20")
@@ -119,7 +165,7 @@ extension MainView {
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: rows) {
-                    ForEach(Array(titleImages.indices), id: \.self) { index in
+                    ForEach(titleImages.indices, id: \.self) { index in
                         HStack(alignment: .bottom, spacing: 0) {
                             Text("\(index + 1)")
                                 .font(.system(size: 50, weight: .bold))
@@ -140,6 +186,7 @@ extension MainView {
         .padding(.bottom, 20)
     }
     
+    @ViewBuilder
     private var livePopularSection: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
@@ -156,7 +203,7 @@ extension MainView {
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: rows) {
-                    ForEach(Array(liveImages.indices), id: \.self) { index in
+                    ForEach(liveImages.indices, id: \.self) { index in
                         VStack(alignment: .leading, spacing: 0) {
                             Image(uiImage: liveImages[index].posterImage)
                                 .resizable()
@@ -193,6 +240,7 @@ extension MainView {
         .padding(.bottom, 18)
     }
 
+    @ViewBuilder
     private var movieSection: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
@@ -209,7 +257,7 @@ extension MainView {
 
             ScrollView(.horizontal) {
                 LazyHGrid(rows: rows, spacing: 8) {
-                    ForEach(Array(titleImages.indices), id: \.self) { index in
+                    ForEach(titleImages.indices, id: \.self) { index in
                         Image(uiImage: titleImages[index].posterImage)
                             .resizable()
                             .frame(width: 98, height: 146)
@@ -221,10 +269,11 @@ extension MainView {
         .padding(.bottom, 28)
     }
 
+    @ViewBuilder
     private var baseballSection: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: rows, spacing: 0) {
-                ForEach(Array(baseballImages.indices), id: \.self) { index in
+                ForEach(baseballImages.indices, id: \.self) { index in
                     Image(uiImage: baseballImages[index].posterImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -238,10 +287,11 @@ extension MainView {
         .padding(.bottom, 28)
     }
     
+    @ViewBuilder
     private var logoSection: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: rows, spacing: 7) {
-                ForEach(Array(logoImages.indices), id: \.self) { index in
+                ForEach(logoImages.indices, id: \.self) { index in
                     Image(uiImage: logoImages[index].posterImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -257,30 +307,63 @@ extension MainView {
         .padding(.bottom, 25)
     }
     
+    @ViewBuilder
     private var gahyunSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("김가현PD의 인생작 TOP 5")
-                .font(.system(size: 15, weight: .bold))
-                .foregroundStyle(.white)
+            HStack(alignment: .center, spacing: 2) {
+                Text("김가현PD의 인생작 TOP 6")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(.white)
+                Spacer()
+                ForEach(0..<liveImages.count, id: \.self) { index in
+                    Circle()
+                        .fill(index == currentIndex ? .white : .gray)
+                        .frame(width: 4, height: 4)
+                }
+            }
             .padding(.bottom, 13)
             .padding(.horizontal, 12)
-            
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: rows, spacing: 8) {
-                    ForEach(Array(liveImages.indices), id: \.self) { index in
-                        Image(uiImage: liveImages[index].posterImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 160, height: 80)
-                            .padding(.bottom, 15)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(Array(liveImages.enumerated()), id: \.offset) { index, item in
+                        GeometryReader { proxy in
+                            let frame = proxy.frame(in: .global)
+                            
+                            Image(uiImage: item.posterImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 160, height: 90)
+                                .clipped()
+                                .cornerRadius(3)
+                                .preference(key: ScrollOffsetPreferenceKey.self, value: [index: frame.minX])
+                        }
+                        .frame(width: 160, height: 90)
                     }
                 }
                 .padding(.horizontal, 12)
             }
+            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { values in
+                scrollOffsets = values
+                
+                if let maxOffset = values.max(by: { $0.value < $1.value }),
+                   let lastIndex = values.keys.max(),
+                   maxOffset.value < UIScreen.main.bounds.width - 170 {
+                    currentIndex = lastIndex
+                    return
+                }
+                
+                if let minOffset = values.min(by: { abs($0.value) < abs($1.value) }) {
+                    currentIndex = minOffset.key
+                }
+            }
+            .frame(height: 80)
+            
         }
         .padding(.bottom, 23)
     }
 
+    @ViewBuilder
     private var noticeSection: some View {
         HStack(alignment: .center, spacing: 0) {
             Text("공지")
@@ -309,6 +392,7 @@ extension MainView {
 
     }
     
+    @ViewBuilder
     private var etcSection: some View {
         VStack(alignment: .leading, spacing: 3) {
             HStack(alignment: .center, spacing: 3) {
