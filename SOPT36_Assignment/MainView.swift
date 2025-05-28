@@ -35,27 +35,12 @@ struct MainView: View {
 //                    todayTvingSection
 //                    livePopularSection
 //                    movieSection
-                    baseballSection
-
+//                    baseballSection
+                    logoSection
                     
                 }
                 
-                ScrollView(.horizontal) {
-                    LazyHGrid(rows: rows, spacing: 7) {
-                        ForEach(Array(logoImages.indices), id: \.self) { index in
-                            Image(uiImage: logoImages[index].posterImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 68, height: 34)
-                                .padding(.horizontal, 11)
-                                .padding(.vertical, 5)
-                                .background(.gray4)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                        }
-                    }
-                    .padding(.horizontal, 15)
-                }
-                .padding(.bottom, 25)
+
                 
             }
         }
@@ -253,6 +238,25 @@ extension MainView {
             }
         }
         .padding(.bottom, 28)
+    }
+    
+    private var logoSection: some View {
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rows, spacing: 7) {
+                ForEach(Array(logoImages.indices), id: \.self) { index in
+                    Image(uiImage: logoImages[index].posterImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 68, height: 34)
+                        .padding(.horizontal, 11)
+                        .padding(.vertical, 5)
+                        .background(.gray4)
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                }
+            }
+            .padding(.horizontal, 15)
+        }
+        .padding(.bottom, 25)
     }
 }
 
