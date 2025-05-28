@@ -22,6 +22,8 @@ struct MainView: View {
     let rows = [GridItem(.flexible())]
     let titleImages = PosterModel.dummy()
     let liveImages = ProgramModel.dummy()
+    let baseballImages = BaseballModel.dummy()
+    let logoImages = LogoModel.dummy()
     
     var body: some View {
         ScrollView {
@@ -31,10 +33,29 @@ struct MainView: View {
                 Section(header: stickyHeaderSction){
 //                    titleImageSection
 //                    todayTvingSection
-                    livePopularSection
-                    movieSection
+//                    livePopularSection
+//                    movieSection
+                    baseballSection
+
+                    
                 }
                 
+                ScrollView(.horizontal) {
+                    LazyHGrid(rows: rows, spacing: 7) {
+                        ForEach(Array(logoImages.indices), id: \.self) { index in
+                            Image(uiImage: logoImages[index].posterImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 68, height: 34)
+                                .padding(.horizontal, 11)
+                                .padding(.vertical, 5)
+                                .background(.gray4)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
+                    .padding(.horizontal, 15)
+                }
+                .padding(.bottom, 25)
                 
             }
         }
@@ -214,9 +235,25 @@ extension MainView {
                 .padding(.horizontal, 15)
             }
         }
-        .padding(.bottom, 20)
+        .padding(.bottom, 28)
     }
 
+    private var baseballSection: some View {
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rows, spacing: 0) {
+                ForEach(Array(baseballImages.indices), id: \.self) { index in
+                    Image(uiImage: baseballImages[index].posterImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 40, height: 40)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 5)
+                        .background(index%2==0 ? .white : .black)
+                }
+            }
+        }
+        .padding(.bottom, 28)
+    }
 }
 
 #Preview {
