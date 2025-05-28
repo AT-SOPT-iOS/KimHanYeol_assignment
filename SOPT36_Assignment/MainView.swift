@@ -29,9 +29,10 @@ struct MainView: View {
                 tvingHeaderSection
                 
                 Section(header: stickyHeaderSction){
-                    titleImageSection
-                    todayTvingSection
+//                    titleImageSection
+//                    todayTvingSection
                     livePopularSection
+                    movieSection
                 }
                 
                 
@@ -185,6 +186,35 @@ extension MainView {
                 .padding(.horizontal, 12)
             }
         }
+        .padding(.bottom, 18)
+    }
+
+    private var movieSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                Text("실시간 인기 영화")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(.white)
+                Spacer()
+                Text("더보기")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.gray)
+            }
+            .padding(.bottom, 9)
+            .padding(.horizontal, 12)
+
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: rows, spacing: 8) {
+                    ForEach(Array(titleImages.indices), id: \.self) { index in
+                        Image(uiImage: titleImages[index].posterImage)
+                            .resizable()
+                            .frame(width: 98, height: 146)
+                    }
+                }
+                .padding(.horizontal, 15)
+            }
+        }
+        .padding(.bottom, 20)
     }
 
 }
