@@ -27,21 +27,19 @@ struct MainView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews:[.sectionHeaders]) {
+            LazyVStack(alignment: .leading, spacing: 0, pinnedViews:[.sectionHeaders]) {
                 tvingHeaderSection
-                
                 Section(header: stickyHeaderSction){
-//                    titleImageSection
-//                    todayTvingSection
-//                    livePopularSection
-//                    movieSection
-//                    baseballSection
+                    titleImageSection
+                    todayTvingSection
+                    livePopularSection
+                    movieSection
+                    baseballSection
                     logoSection
-                    
+                    gahyunSection
+                    noticeSection
+                    etcSection
                 }
-                
-
-                
             }
         }
         .scrollIndicators(.hidden)
@@ -257,6 +255,102 @@ extension MainView {
             .padding(.horizontal, 15)
         }
         .padding(.bottom, 25)
+    }
+    
+    private var gahyunSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("김가현PD의 인생작 TOP 5")
+                .font(.system(size: 15, weight: .bold))
+                .foregroundStyle(.white)
+            .padding(.bottom, 13)
+            .padding(.horizontal, 12)
+            
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: rows, spacing: 8) {
+                    ForEach(Array(liveImages.indices), id: \.self) { index in
+                        Image(uiImage: liveImages[index].posterImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 160, height: 80)
+                            .padding(.bottom, 15)
+                    }
+                }
+                .padding(.horizontal, 12)
+            }
+        }
+        .padding(.bottom, 23)
+    }
+
+    private var noticeSection: some View {
+        HStack(alignment: .center, spacing: 0) {
+            Text("공지")
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(.gray2)
+                .padding(.leading, 17)
+            
+            Text("티빙 계정 공유 정책 추가 안내")
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(.gray1)
+                .padding(.leading, 8)
+
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .frame(width: 18, height: 18)
+                .foregroundStyle(.white)
+                .padding(.trailing, 18)
+            
+        }
+        .frame(height: 50)
+        .background(.gray4)
+        .clipShape(RoundedRectangle(cornerRadius: 5))
+        .padding(.horizontal, 14)
+        .padding(.bottom, 15)
+
+    }
+    
+    private var etcSection: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            HStack(alignment: .center, spacing: 3) {
+                Text("고객문의")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.gray2)
+                
+                Image(systemName: "circle.fill")
+                    .resizable()
+                    .frame(width: 2, height: 2)
+                    .foregroundStyle(.gray2)
+
+                Text("이용약관")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.gray2)
+                
+                Image(systemName: "circle.fill")
+                    .resizable()
+                    .frame(width: 2, height: 2)
+                    .foregroundStyle(.gray2)
+                
+                Text("개인정보처리방침")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.white)
+            }
+            
+            HStack(alignment: .center, spacing: 3) {
+                Text("사업자정보")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.gray2)
+                
+                Image(systemName: "circle.fill")
+                    .resizable()
+                    .frame(width: 2, height: 2)
+                    .foregroundStyle(.gray2)
+
+                Text("인재채용")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(.gray2)
+            }
+        }
+        .padding(.horizontal, 20)
     }
 }
 
