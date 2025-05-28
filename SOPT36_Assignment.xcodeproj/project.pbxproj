@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6CAA7EDB2DE4BCDB00BB567E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EDA2DE4BCDB00BB567E /* MainView.swift */; };
+		6CAA7EF12DE72EEF00BB567E /* BaseballModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EEB2DE72EEF00BB567E /* BaseballModel.swift */; };
+		6CAA7EF22DE72EEF00BB567E /* GahyunPickModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EEC2DE72EEF00BB567E /* GahyunPickModel.swift */; };
+		6CAA7EF32DE72EEF00BB567E /* LogoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EED2DE72EEF00BB567E /* LogoModel.swift */; };
+		6CAA7EF42DE72EEF00BB567E /* PosterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EEE2DE72EEF00BB567E /* PosterModel.swift */; };
+		6CAA7EF52DE72EEF00BB567E /* ProgramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA7EEF2DE72EEF00BB567E /* ProgramModel.swift */; };
 		6CD0F1AE2DC1186D00EFFE7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */; };
 		6CD0F1B02DC1186D00EFFE7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD0F1A92DC1186D00EFFE7F /* LaunchScreen.storyboard */; };
 		6CD0F1B12DC1186D00EFFE7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0F19F2DC1186D00EFFE7F /* AppDelegate.swift */; };
@@ -16,6 +21,11 @@
 
 /* Begin PBXFileReference section */
 		6CAA7EDA2DE4BCDB00BB567E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6CAA7EEB2DE72EEF00BB567E /* BaseballModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballModel.swift; sourceTree = "<group>"; };
+		6CAA7EEC2DE72EEF00BB567E /* GahyunPickModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GahyunPickModel.swift; sourceTree = "<group>"; };
+		6CAA7EED2DE72EEF00BB567E /* LogoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoModel.swift; sourceTree = "<group>"; };
+		6CAA7EEE2DE72EEF00BB567E /* PosterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterModel.swift; sourceTree = "<group>"; };
+		6CAA7EEF2DE72EEF00BB567E /* ProgramModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramModel.swift; sourceTree = "<group>"; };
 		6CD0F19F2DC1186D00EFFE7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CD0F1A02DC1186D00EFFE7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6CD0F1A62DC1186D00EFFE7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,6 +45,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CAA7EF02DE72EEF00BB567E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CAA7EEB2DE72EEF00BB567E /* BaseballModel.swift */,
+				6CAA7EEC2DE72EEF00BB567E /* GahyunPickModel.swift */,
+				6CAA7EED2DE72EEF00BB567E /* LogoModel.swift */,
+				6CAA7EEE2DE72EEF00BB567E /* PosterModel.swift */,
+				6CAA7EEF2DE72EEF00BB567E /* ProgramModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6CD0F1A12DC1186D00EFFE7F /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +81,7 @@
 			children = (
 				6CD0F1A12DC1186D00EFFE7F /* Application */,
 				6CD0F1D42DC1361E00EFFE7F /* Global */,
+				6CAA7EF02DE72EEF00BB567E /* Model */,
 				6CAA7EDA2DE4BCDB00BB567E /* MainView.swift */,
 			);
 			path = SOPT36_Assignment;
@@ -164,6 +187,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CD0F1B12DC1186D00EFFE7F /* AppDelegate.swift in Sources */,
+				6CAA7EF12DE72EEF00BB567E /* BaseballModel.swift in Sources */,
+				6CAA7EF22DE72EEF00BB567E /* GahyunPickModel.swift in Sources */,
+				6CAA7EF32DE72EEF00BB567E /* LogoModel.swift in Sources */,
+				6CAA7EF42DE72EEF00BB567E /* PosterModel.swift in Sources */,
+				6CAA7EF52DE72EEF00BB567E /* ProgramModel.swift in Sources */,
 				6CAA7EDB2DE4BCDB00BB567E /* MainView.swift in Sources */,
 				6CD0F1B22DC1186D00EFFE7F /* SceneDelegate.swift in Sources */,
 			);

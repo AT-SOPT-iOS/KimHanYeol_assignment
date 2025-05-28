@@ -17,44 +17,28 @@ enum StickyHeaderType: String, CaseIterable {
 }
 
 struct MainView: View {
-    
-    init() {
-        UISegmentedControl.appearance().selectedSegmentTintColor = .black
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-        UISegmentedControl.appearance().setTitleTextAttributes([.font: self.font(.system(size: 17, weight: .bold))], for: .normal)
-    }
-    
     @State var selectedTab: StickyHeaderType = .home
+    
+    let rows = [GridItem(.flexible())]
+    let titleImages = PosterModel.dummy()
+    let liveImages = ProgramModel.dummy()
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            LazyVStack(spacing: 0, pinnedViews:[.sectionHeaders]) {
                 tvingHeaderSection
                 
-                HStack(spacing: 10) {
-                    ForEach(StickyHeaderType.allCases, id: \.self) { tab in
-                        VStack(spacing: 0) {
-                            Text(tab.rawValue)
-                                .font(.system(size: 17, weight: .bold))
-                                .foregroundColor(.white)
-                                .frame(height: 27)
-                                
-                                .onTapGesture {
-                                    selectedTab = tab
-                                }
-                            
-                            Rectangle()
-                                .frame(height: 3)
-                                .foregroundColor(tab == selectedTab ? .white : .clear)
-                                .padding(.top, 7)
-                        }
-                    }
+                Section(header: stickyHeaderSction){
+                    titleImageSection
+                    todayTvingSection
+                    livePopularSection
                 }
                 
-                mainBodySection
+                
             }
         }
-        .ignoresSafeArea()
+        .scrollIndicators(.hidden)
+        .clipped()
         .background(.black)
         
     }
@@ -81,26 +65,128 @@ extension MainView {
                 .frame(width: 40, height: 40)
                 .padding(.trailing, 11)
         }
-        .padding(.top, 21)
     }
     
-    private var mainBodySection: some View {
-        switch selectedTab {
-        case .home:
-            Text("홈")
-        case .drame:
-            Text("드라마")
-        case .entertainment:
-            Text("예능")
-        case .movie:
-            Text("영화")
-        case .sports:
-            Text("스포츠")
-        case .news:
-            Text("뉴스")
+    private var stickyHeaderSction: some View {
+        HStack(spacing: 10) {
+            ForEach(StickyHeaderType.allCases, id: \.self) { tab in
+                VStack(spacing: 0) {
+                    Text(tab.rawValue)
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(height: 27)
+                        .onTapGesture {
+                            selectedTab = tab
+                        }
+                    
+                    Rectangle()
+                        .frame(height: 3)
+                        .foregroundColor(tab == selectedTab ? .white : .clear)
+                        .padding(.top, 7)
+                        .padding(.horizontal, 5)
+                }
+            }
+        }
+        .padding(.bottom, 7)
+        .background(.black)
+    }
+    
+    private var titleImageSection: some View {
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rows) {
+                ForEach(titleImages.indices, id: \.self) { index in
+                    Image(uiImage: titleImages[index].posterImage)
+                        .resizable()
+                        .frame(width: 375, height: 400)
+                }
+            }
+            .padding(.bottom, 9)
         }
     }
     
+    private var todayTvingSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("오늘의 티빙 TOP 20")
+                .font(.system(size: 15, weight: .bold))
+                .padding(.bottom, 9)
+                .padding(.leading, 12)
+                .foregroundStyle(.white)
+            
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: rows) {
+                    ForEach(Array(titleImages.indices), id: \.self) { index in
+                        HStack(alignment: .bottom, spacing: 0) {
+                            Text("\(index + 1)")
+                                .font(.system(size: 50, weight: .bold))
+                                .italic()
+                                .foregroundColor(.white)
+                                .padding(.trailing, 10)
+                            
+                            Image(uiImage: titleImages[index].posterImage)
+                                .resizable()
+                                .frame(width: 98, height: 146)
+                        }
+                        .padding(.trailing, 5)
+                    }
+                }
+                .padding(.horizontal, 5)
+            }
+        }
+        .padding(.bottom, 20)
+    }
+    
+    private var livePopularSection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                Text("실시간 인기 LIVE")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(.white)
+                Spacer()
+                Text("더보기")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.gray)
+            }
+            .padding(.bottom, 9)
+            .padding(.horizontal, 12)
+            
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: rows) {
+                    ForEach(Array(liveImages.indices), id: \.self) { index in
+                        VStack(alignment: .leading, spacing: 0) {
+                            Image(uiImage: liveImages[index].posterImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 160, height: 80)
+                                .padding(.bottom, 15)
+                            
+                            HStack(alignment: .top, spacing: 2) {
+                                Text("\(index + 1)")
+                                    .font(.system(size: 19, weight: .bold))
+                                    .italic()
+                                    .foregroundColor(.white)
+                                    .padding(.trailing, 10)
+                                
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(liveImages[index].title)
+                                        .font(.system(size: 10, weight: .bold))
+                                        .foregroundColor(.white)
+                                    Text(liveImages[index].description)
+                                        .font(.system(size: 10, weight: .semibold))
+                                        .foregroundColor(.gray2)
+                                    Text(liveImages[index].rating)
+                                        .font(.system(size: 10, weight: .semibold))
+                                        .foregroundColor(.gray2)
+                                }
+                            }
+                            .padding(.horizontal, 6)
+                        }
+                    }
+                }
+                .padding(.horizontal, 12)
+            }
+        }
+    }
+
 }
 
 #Preview {
