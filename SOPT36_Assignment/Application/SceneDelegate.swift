@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,15 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        let vc = TabViewController()
-        let navigationController = UINavigationController(rootViewController: vc) // 네비게이션 컨트롤러 추가
-        
+      if let windowScene = scene as? UIWindowScene {
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = navigationController // 네비게이션 컨트롤러를 루트뷰로 설정
-        window.makeKeyAndVisible()
+        window.rootViewController = UIHostingController(
+          rootView: MainView()
+        )
         self.window = window
+        window.makeKeyAndVisible()
+      }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
