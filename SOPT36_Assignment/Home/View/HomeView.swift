@@ -1,30 +1,21 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  SOPT36_Assignment
 //
-//  Created by OneTen on 5/27/25.
+//  Created by OneTen on 6/3/25.
 //
 
 import SwiftUI
 
-struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: [Int: CGFloat] = [:]
-    
-    static func reduce(value: inout [Int : CGFloat], nextValue: () -> [Int : CGFloat]) {
-        value.merge(nextValue(), uniquingKeysWith: { $1 })
-    }
-}
-
-struct MainView: View {
+struct HomeView: View {
     
     //MARK: - Property Wrappers
 
-    @State var selectedTab: StickyHeaderType = .home
     @State private var currentIndex: Int = 0
     @State private var scrollOffsets: [Int: CGFloat] = [:]
     
     //MARK: - Properties
-    
+
     let rows = [GridItem(.flexible())]
     let titleImages = PosterModel.dummy()
     let liveImages = ProgramModel.dummy()
@@ -32,113 +23,26 @@ struct MainView: View {
     let logoImages = LogoModel.dummy()
     
     //MARK: - Main Body
-    
+
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 0, pinnedViews:[.sectionHeaders]) {
-                tvingHeaderSection
-                Section(header: stickyHeaderSection){
-                    mainBodySection
-                }
-            }
-        }
-        .scrollIndicators(.hidden)
-        .clipped()
-        .background(.black)
-    }
-}
-
-
-//MARK: - ScrollView UI Properties
-
-extension MainView {
-    
-    @ViewBuilder
-    private var tvingHeaderSection: some View {
-        HStack(alignment: .center, spacing: 0) {
-            Image(.tvingLogo)
-                .resizable()
-                .frame(width: 191, height: 78)
-            
-            Spacer()
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 30, height: 30)
-                .padding(.trailing, 10)
-                .foregroundStyle(.white)
-            
-            Image(.tvingIcon)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 40, height: 40)
-                .padding(.trailing, 11)
-        }
-    }
-    
-    @ViewBuilder
-    private var stickyHeaderSection: some View {
-        HStack(spacing: 10) {
-            ForEach(StickyHeaderType.allCases, id: \.self) { tab in
-                VStack(spacing: 0) {
-                    Text(tab.rawValue)
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(height: 27)
-                        .onTapGesture {
-                            selectedTab = tab
-                        }
-                    
-                    Rectangle()
-                        .frame(height: 3)
-                        .foregroundColor(tab == selectedTab ? .white : .clear)
-                        .padding(.top, 7)
-                        .padding(.horizontal, 5)
-                }
-            }
-        }
-        .padding(.bottom, 7)
-        .background(.black)
-    }
-    
-    @ViewBuilder
-    private var mainBodySection: some View {
-        switch selectedTab {
-        case .home:
-            VStack(alignment: .leading, spacing: 0) {
-                titleImageSection
-                todayTvingSection
-                livePopularSection
-                movieSection
-                baseballSection
-                logoSection
-                gahyunSection
-                noticeSection
-                etcSection
-            }
-        case .drame:
-            Text("드라마")
-                .foregroundStyle(.white)
-        case .entertainment:
-            Text("예능")
-                .foregroundStyle(.white)
-        case .movie:
-            Text("영화")
-                .foregroundStyle(.white)
-        case .news:
-            Text("뉴스")
-                .foregroundStyle(.white)
-        case .sports:
-            Text("스포츠")
-                .foregroundStyle(.white)
+        VStack(alignment: .leading, spacing: 0) {
+            titleImageSection
+            todayTvingSection
+            livePopularSection
+            movieSection
+            baseballSection
+            logoSection
+            gahyunSection
+            noticeSection
+            etcSection
         }
     }
 }
 
 
-//MARK: - mainBodySection UI Properties
+//MARK: - UI Properties
 
-extension MainView {
+extension HomeView {
     
     @ViewBuilder
     private var titleImageSection: some View {
@@ -436,8 +340,4 @@ extension MainView {
         }
         .padding(.horizontal, 20)
     }
-}
-
-#Preview {
-    MainView()
 }

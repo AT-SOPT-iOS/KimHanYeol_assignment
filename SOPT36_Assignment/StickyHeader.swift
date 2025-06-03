@@ -1,5 +1,5 @@
 //
-//  StickyHeaderView.swift
+//  StickyHeader.swift
 //  SOPT36_Assignment
 //
 //  Created by OneTen on 6/3/25.
@@ -16,9 +16,14 @@ enum StickyHeaderType: String, CaseIterable {
     case news = "뉴스"
 }
 
-struct StickyHeaderView: View {
+struct StickyHeader: View {
+    
+    //MARK: - Property Wrappers
+
     @Binding var selectedTab: StickyHeaderType
     
+    //MARK: - Main Body
+
     var body: some View {
         HStack(spacing: 10) {
             ForEach(StickyHeaderType.allCases, id: \.self) { tab in
