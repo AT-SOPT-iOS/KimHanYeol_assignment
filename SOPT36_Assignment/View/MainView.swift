@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-enum StickyHeaderType: String, CaseIterable {
-    case home = "홈"
-    case drame = "드라마"
-    case entertainment = "예능"
-    case movie = "영화"
-    case sports = "스포츠"
-    case news = "뉴스"
-}
-
 struct ScrollOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: [Int: CGFloat] = [:]
     
@@ -25,21 +16,28 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
 }
 
 struct MainView: View {
+    
+    //MARK: - Property Wrappers
+
     @State var selectedTab: StickyHeaderType = .home
     @State private var currentIndex: Int = 0
     @State private var scrollOffsets: [Int: CGFloat] = [:]
-
+    
+    //MARK: - Properties
+    
     let rows = [GridItem(.flexible())]
     let titleImages = PosterModel.dummy()
     let liveImages = ProgramModel.dummy()
     let baseballImages = BaseballModel.dummy()
     let logoImages = LogoModel.dummy()
     
+    //MARK: - Main Body
+    
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0, pinnedViews:[.sectionHeaders]) {
                 tvingHeaderSection
-                Section(header: stickyHeaderSction){
+                Section(header: stickyHeaderSection){
                     mainBodySection
                 }
             }
@@ -51,9 +49,10 @@ struct MainView: View {
 }
 
 
-// MARK: - Header $ TabView Section
+//MARK: - ScrollView UI Properties
 
 extension MainView {
+    
     @ViewBuilder
     private var tvingHeaderSection: some View {
         HStack(alignment: .center, spacing: 0) {
@@ -78,7 +77,7 @@ extension MainView {
     }
     
     @ViewBuilder
-    private var stickyHeaderSction: some View {
+    private var stickyHeaderSection: some View {
         HStack(spacing: 10) {
             ForEach(StickyHeaderType.allCases, id: \.self) { tab in
                 VStack(spacing: 0) {
@@ -137,9 +136,10 @@ extension MainView {
 }
 
 
-// MARK: - Home View Section
+//MARK: - mainBodySection UI Properties
 
 extension MainView {
+    
     @ViewBuilder
     private var titleImageSection: some View {
         ScrollView(.horizontal) {
@@ -239,7 +239,7 @@ extension MainView {
         }
         .padding(.bottom, 18)
     }
-
+    
     @ViewBuilder
     private var movieSection: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -254,7 +254,7 @@ extension MainView {
             }
             .padding(.bottom, 9)
             .padding(.horizontal, 12)
-
+            
             ScrollView(.horizontal) {
                 LazyHGrid(rows: rows, spacing: 8) {
                     ForEach(titleImages.indices, id: \.self) { index in
@@ -268,7 +268,7 @@ extension MainView {
         }
         .padding(.bottom, 28)
     }
-
+    
     @ViewBuilder
     private var baseballSection: some View {
         ScrollView(.horizontal) {
@@ -323,7 +323,7 @@ extension MainView {
             }
             .padding(.bottom, 13)
             .padding(.horizontal, 12)
-
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(Array(liveImages.enumerated()), id: \.offset) { index, item in
@@ -362,7 +362,7 @@ extension MainView {
         }
         .padding(.bottom, 23)
     }
-
+    
     @ViewBuilder
     private var noticeSection: some View {
         HStack(alignment: .center, spacing: 0) {
@@ -375,7 +375,7 @@ extension MainView {
                 .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(.gray1)
                 .padding(.leading, 8)
-
+            
             Spacer()
             
             Image(systemName: "chevron.right")
@@ -389,7 +389,7 @@ extension MainView {
         .clipShape(RoundedRectangle(cornerRadius: 5))
         .padding(.horizontal, 14)
         .padding(.bottom, 15)
-
+        
     }
     
     @ViewBuilder
@@ -404,7 +404,7 @@ extension MainView {
                     .resizable()
                     .frame(width: 2, height: 2)
                     .foregroundStyle(.gray2)
-
+                
                 Text("이용약관")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.gray2)
@@ -428,7 +428,7 @@ extension MainView {
                     .resizable()
                     .frame(width: 2, height: 2)
                     .foregroundStyle(.gray2)
-
+                
                 Text("인재채용")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.gray2)
